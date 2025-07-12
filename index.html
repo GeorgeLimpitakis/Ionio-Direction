@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link rel="icon" href="https://di.ionio.gr/favicon.ico" type="image/x-icon">
+  <meta property="og:image" content="https://di.ionio.gr/images/content/og_image.jpg">
+  <link rel="manifest" href="manifest.json">
+  <meta name="description" content="Αλλαγή Προγράμματος σπουδών στο Τμήμα Πληροφορικής του
+                                    Ιονίου Πανεπιστημίου. Quiz μαθημάτων για διευκόληνση 
+                                    επιλογή Κατεύθυνσης για τους φοιτητές.">
+  <title>Quiz Κατευθύνσεων</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="chart.js"></script>
+  <script src="html2canvas.min.js"></script>
+</head>
+<body>
+  <!-- Progress Bar στην κορυφή του viewport -->
+  <div id="progress-container">
+    <div id="progress-bar"></div>
+  </div>
+
+  <div class="container">
+    <!-- information button for th results -->
+    <button id="info-btn" title="Αναλυτικά σκορ"><span class="info-letter">i</span></button>
+
+    <!-- Start screen -->
+    <div id="start-screen" class="card">
+      <h2>🎓 Καλώς ήρθες στο Quiz Κατευθύνσεων!</h2>
+      <p>Ανακάλυψε ποια κατεύθυνση σου ταιριάζει περισσότερο.</p>
+      <button id="start-btn">Ξεκίνα το Quiz</button>
+    </div>
+
+    <!-- Question Card -->
+    <div id="card" class="card hidden">
+      <h2 id="course-title"></h2>
+      <p id="course-desc"></p>
+      <div class="buttons">
+        <button onclick="vote(2)">❤️ Like</button>
+        <button onclick="vote(1)">😐 Neutral</button>
+        <button onclick="vote(0)">👎 Dislike</button>
+      </div>
+    </div>
+
+    <!-- Result -->
+    <div id="result" class="card hidden">
+      <h2>🎉 Τα αποτελέσματά σου</h2>
+      <h5>Το διάγραμμα με τα ενδιαφέροντα σου</h5>
+      <canvas id="scoreChart"></canvas>
+      <button id="share-btn">📤 Κοινοποίησε</button>
+      <div class="water">&#xA9;&#x20;&#x67;&#x65;&#x6F;&#x72;&#x67;&#x65;&#x5F;&#x6C;&#x69;&#x6D;&#x70;</div>
+    </div>
+  </div>
+
+  <!-- Information Modal -->
+  <div id="info-modal" class="hidden">
+    <div class="modal-content">
+      <span id="close-modal">&times;</span>
+      <h3>Αναλυτικά Σκορ Κατευθύνσεων</h3>
+      <table id="combo-table">
+        <thead>
+          <tr><th>Κατεύθυνση Maj-Min</th><th>Σκορ</th></tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+      <br>
+      <p>
+      <b>ΠΡΟΟΠΤΙΚΕΣ ΚΑΤΕΥΘΥΝΣΕΩΝ</b> <br>
+      <br>
+      Περισσότερα για το νέο <a href="https://di.ionio.gr/gr/studies/undergraduate-studies/curriculum-new/" target="_blank"> πρόγραμμα σπουδών και τα μαθήματα</a>.<br>
+        <br>
+      <b>🔬 Βιοϊατρικά Υπολογιστικά Νευρωνικά Συστήματα (ΒΥΝ)</b><br>
+      <br>
+      <b>Τομείς Απασχόλησης:</b><br>
+      - Νοσοκομεία & ιδρύματα υγείας με τμήματα πληροφορικής<br>
+      - Εταιρείες βιοτεχνολογίας & φαρμακευτικής έρευνας<br>
+      - Ερευνητικά ινστιτούτα υγείας (π.χ. ΕΛΚΕΘΕ, ΙΤΕ)<br>
+      - Πανεπιστήμια (ως βοηθοί ερευνητών ή PhD υποψήφιοι)<br>
+      - Startups με εφαρμογές Τεχνητής Νοημοσύνης στη βιοιατρική<br>
+      <br>
+      <b>Επαγγέλματα:</b><br>
+      - Bioinformatics Engineer / Αναλυτής Γενετικών Δεδομένων<br>
+      - Ερευνητής σε Τεχνητή Νοημοσύνη για Ιατρική Διάγνωση<br>
+      - Data Scientist σε Ιατρικές εφαρμογές<br>
+      - Developer Εφαρμογών Επεξεργασίας Ομιλίας/Εικόνας Υγείας<br>
+      <br>
+      <b>🛡️ Κυβερνοασφάλεια και Δικτυακές Εφαρμογές (ΚΔΕ)</b><br>
+        <br>
+      <b>Τομείς Απασχόλησης:</b><br>
+      - Εταιρείες πληροφορικής με δίκτυα, cloud ή SaaS<br>
+      - Τμήματα IT οργανισμών/τραπεζών/φορέων<br>
+      - Κέντρα κυβερνοασφάλειας<br>
+      - Δικαστικές αρχές (ψηφιακή εγκληματολογία)<br>
+      - Συμβουλευτικές εταιρείες σε θέματα ασφάλειας πληροφορικής<br>
+      <br>
+      <b>Επαγγέλματα:</b><br>
+      - Cybersecurity Analyst / Ειδικός Ασφάλειας Πληροφοριών<br>
+      - Ethical Hacker / Pentester<br>
+      - Software Security Engineer<br>
+      - Ειδικός Κρυπτογραφίας ή Διαχείρισης Κινδύνου<br>
+      - Digital Forensics Expert<br>
+        <br>
+      <b>📊 Ψηφιακός Μετασχηματισμός και Ανάλυση Δεδομένων (ΨΜΑΔ)</b><br>
+        <br>
+      <b>Τομείς Απασχόλησης:</b><br>
+      - Εταιρείες Data Analytics & Business Intelligence<br>
+      - Τμήματα marketing & logistics<br>
+      - Εταιρείες ανάπτυξης εφαρμογών ή συστημάτων ERP/CRM<br>
+      - Οργανισμοί με ανάγκες οπτικοποίησης και στρατηγικής δεδομένων<br>
+      - Νεοφυείς επιχειρήσεις και ηλεκτρονικό επιχειρείν<br>
+        <br>
+      <b>Επαγγέλματα:</b><br>
+      - Business/Data Analyst  <br>
+      - Data Engineer / Visualization Specialist  <br>
+      - Product Manager με έμφαση σε ψηφιακά προϊόντα  <br>
+      - Σύμβουλος Ψηφιακού Μετασχηματισμού  <br>
+      - UX Designer για λογισμικό οπτικοποίησης δεδομένων<br>
+      </p>
+    </div>
+  </div>
+
+  <script src="courses.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

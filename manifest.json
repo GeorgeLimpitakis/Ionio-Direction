@@ -1,0 +1,14 @@
+{
+  "name": "Quiz Κατευθύνσεων",
+  "short_name": "Κατεύθυνση Quiz",
+  "start_url": "index.html",
+  "display": "standalone",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "https://di.ionio.gr/favicon.ico",
+      "sizes": "64x64",
+      "type": "image/ico"
+    }
+  ]
+}
