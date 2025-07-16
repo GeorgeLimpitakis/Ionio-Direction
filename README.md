@@ -3,8 +3,8 @@ Inoinan Universtity Choose Direction Quiz
 
 
 ## Languages
-- [Greek](##Greek)
-- [English](##English)
+- [Greek](#greek)
+- [English](#english)
 
 <img src="Assets/start.jpeg" alt="Start Quiz home card" width="300" style="display: inline-block; margin-right: 10px;"/>
 <img src="Assets/lessons.jpg" alt="Results" width="300" style="display: inline-block; margin-right: 10px;"/>
