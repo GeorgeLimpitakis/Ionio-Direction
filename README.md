@@ -43,7 +43,7 @@ Inoinan Universtity Choose Direction Quiz
 |Microsoft Edge|EdgeHTML & Chromium-based|
 |Safari| 6+ |
 
-<a href="https://example.com" target="_blank" rel="https://ionio-directions.netlify.app/">
+<a href="https://ionio-directions.netlify.app/" target="_blank" rel="https://ionio-directions.netlify.app/">
 <img src="https://cdn.pixabay.com/photo/2022/04/18/21/34/try-now-7141612_1280.png" alt="Tri it now" width="150"/></a>
 
 
@@ -87,5 +87,5 @@ Inoinan Universtity Choose Direction Quiz
 | Safari         | 6+                        |
 
 
-<a href="https://example.com" target="_blank" rel="https://ionio-directions.netlify.app/">
+<a href="https://ionio-directions.netlify.app/" target="_blank" rel="https://ionio-directions.netlify.app/">
 <img src="https://cdn.pixabay.com/photo/2022/04/18/21/34/try-now-7141612_1280.png" alt="Tri it now" width="150"/></a>
